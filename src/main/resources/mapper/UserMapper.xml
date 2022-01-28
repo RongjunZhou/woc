@@ -2,9 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.woc.mapper.UserMapper">
 
-    <!--示例-->
-    <insert id="test">
-        INSERT INTO testTable (testField) VALUE value
-    </insert>
+<!--        &lt;!&ndash;示例&ndash;&gt;-->
+<!--        <insert id="test">-->
+<!--            INSERT INTO testTable (testField) VALUE value-->
+<!--        </insert>-->
 
+    <select id="queryAll" resultType="com.example.woc.entity.Account">
+        select * from woc.account
+    </select>
+    <select id="queryByName" parameterType="String" resultType="com.example.woc.entity.Account">
+        select * from woc.account where username = #{username}
+    </select>
+    <select id="queryById" parameterType="Integer" resultType="com.example.woc.entity.Account">
+        select * from woc.account where id = #{id}
+    </select>
+
+    <delete id="deleteUserByName" parameterType="String" >
+        delete from woc.account where username=#{username}
+    </delete>
+
+    <insert id="addUser" parameterType="com.example.woc.entity.Account">
+        insert into account(username, password,email) values (#{username},#{password},#{email})
+    </insert>
 </mapper>
+
+
+    <!--示例-->
+<!--    <insert id="test">-->
+<!--        INSERT INTO testTable (testField) VALUE value-->
+<!--    </insert>-->
+<!--    <select id="selectUserById" resultType="Account" parameterType="int">-->
+<!--        SELECT * from woc where id = #{id}-->
+<!--    </select>-->
+<!--    <select id="selectUserByName" resultType="Account" parameterType="String">-->
+<!--        SELECT * from woc where NAME = #{NAME}-->
+<!--    </select>-->
+<!--    <insert id="insertUser" parameterType="Account">-->
+<!--        insert into  woc(id,name,password,mail) values(#{name},#{password})-->
+<!--    </insert>-->
+
+<!--</mapper>-->
